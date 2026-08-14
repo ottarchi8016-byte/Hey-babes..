@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Quiz for Someone Special! 🎉</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        .card {
+            background: #1f2937;
+            border: 2px solid #ec4899;
+            border-radius: 20px;
+            padding: 30px 20px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(236, 72, 153, 0.2);
+            position: relative;
+        }
+        h2 { color: #f472b6; margin-bottom: 20px; font-size: 1.4rem; }
+        .options { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+        .btn {
+            background: #374151;
+            color: #fff;
+            border: 1px solid #4b5563;
+            padding: 14px 18px;
+            font-size: 1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+        .btn:hover { background: #ec4899; border-color: #ec4899; transform: translateY(-2px); }
+        .feedback {
+            background: #374151;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            color: #f3247a;
+            font-weight: 600;
+            display: none;
+        }
+        .next-btn {
+            background: #ec4899;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: none;
+            font-weight: bold;
+        }
+        .final-screen { display: none; }
+        .final-screen h1 { color: #f472b6; font-size: 2rem; margin-bottom: 15px; }
+        .final-screen p { color: #e5e7eb; font-size: 1.1rem; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Question 1 -->
+        <div id="q1">
+            <h2>Q1: What's the best thing you'd love to do with me? 💖</h2>
+            <div class="options">
+                <button class="btn" onclick="answerQ1('A')">A) Late night chatting 🌙</button>
+                <button class="btn" onclick="answerQ1('B')">B) Listening to music with me 🎧</button>
+            </div>
+            <div id="fb1" class="feedback"></div>
+            <button id="next1" class="next-btn" onclick="showQ2()">Next Question ➡️</button>
+        </div>
+
+        <!-- Question 2 -->
+        <div id="q2" style="display:none;">
+            <h2>Q2: What would you love more? 🤔</h2>
+            <div class="options">
+                <button class="btn" onclick="answerQ2('A')">A) To eat whatever you want 🍕🍰</button>
+                <button class="btn" onclick="answerQ2('B')">B) To follow your strict man's rules 🫡</button>
+                <button class="btn" onclick="answerQ2('C')">C) Want your man to become your exact type 😆</button>
+            </div>
+            <div id="fb2" class="feedback"></div>
+            <button id="next2" class="next-btn" onclick="showFinal()">Unlock Final Wish 🎁</button>
+        </div>
+
+        <!-- Final Screen -->
+        <div id="final" class="final-screen">
+            <h1>Happy Birthday Sweetheart 😘</h1>
+            <p>You passed the quiz! 🎉<br><br>May your year be filled with unlimited food, good music, late-night talks, and lots of joy. You are deeply special—enjoy your day to the fullest! ❤️</p>
+        </div>
+    </div>
+
+    <script>
+        function answerQ1(choice) {
+            const fb = document.getElementById('fb1');
+            if (choice === 'A') {
+                fb.innerText = "Plot twist! 😮 Late-night talks where we lose track of time are unmatched!";
+            } else {
+                fb.innerText = "I knew you’d pick this! 🎶 Music and good vibes together is pure comfort.";
+            }
+            fb.style.display = 'block';
+            document.getElementById('next1').style.display = 'inline-block';
+        }
+
+        function showQ2() {
+            document.getElementById('q1').style.display = 'none';
+            document.getElementById('q2').style.display = 'block';
+        }
+
+        function answerQ2(choice) {
+            const fb = document.getElementById('fb2');
+            const nextBtn = document.getElementById('next2');
+            if (choice === 'A') {
+                fb.innerText = "Correct! 🍕 Food is life, and birthday calories don't count!";
+                nextBtn.style.display = 'inline-block';
+            } else if (choice === 'C') {
+                fb.innerText = "Correct! 😆 Customizing your man to your exact taste is the ultimate power move!";
+                nextBtn.style.display = 'inline-block';
+            } else {
+                fb.innerText = "Nice try! 😜 You know you don't actually want strict rules—pick A or C for the real answer!";
+                nextBtn.style.display = 'none';
+            }
+            fb.style.display = 'block';
+        }
+
+        function showFinal() {
+            document.getElementById('q2').style.display = 'none';
+            document.getElementById('final').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
